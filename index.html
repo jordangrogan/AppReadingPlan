@@ -131,10 +131,8 @@
         readingCheckbox.setAttribute("type", "checkbox");
         readingCheckbox.setAttribute("value", "reading" + readingDay + reading);
         readingCheckbox.setAttribute("onchange", "completedReading(this);");
-        console.log(localStorage["reading" + readingDay + reading]);
         if(localStorage["reading" + readingDay + reading] === "true") {
-          console.log("true!");
-          readingCheckbox.checked = true;
+          readingCheckbox.checked = true; // check the box if it's set to true in localStorage
         }
         cardLi.appendChild(readingCheckbox);
 
@@ -155,13 +153,12 @@
       window.scrollBy(0, -20);
     }, 0); // Had to put this in a setTimeout to wait until the page loads
 
+    // When a checkbox is checked/unchecked
     function completedReading(checkbox) {
       if(checkbox.checked == true){
         localStorage[checkbox.value] = true;
-        console.log("CHECKED!" + checkbox.value);
       } else {
         localStorage[checkbox.value] = false;
-        console.log("UNCHECKED!" + checkbox.value);
       }
     }
 
