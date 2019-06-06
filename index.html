@@ -1,0 +1,107 @@
+<html>
+
+<head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      background: #e5e4e4;
+      font-family: "Avenir Next"; /* NEED TO REPLACE WITH WEB FONT */
+    }
+    .card {
+      position: relative;
+      margin: 20px 10px 20px 10px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0px 1px 35px 0px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      padding: 15px;
+    }
+    .card h1 {
+      margin: 0 0 10px 10px;
+      font-size: 30px;
+    }
+    .card ul {
+      list-style-type: none;
+      padding-left: 25px;
+      margin: 0;
+    }
+    .card li {
+      margin-bottom: 5px;
+      font-size: 20px
+    }
+    .card li a {
+      color: #007da9;
+      text-decoration: none;
+    }
+    .card input[type=checkbox] {
+      margin: 0 10px 0 0;
+      vertical-align: middle;
+      position: relative;
+      top: -2px;
+    }
+  </style>
+
+</head>
+<body>
+
+  <div id="cards"></div>
+
+  <a id="0101"></a><div class="card" id="card0101">
+    <h1>January 1</h1>
+    <ul>
+      <li><input type="checkbox" name="0101" value="0" /><a href="https://my.bible.com/bible/111/GEN.1.niv" target="_blank">Genesis 1</a></li>
+      <li><input type="checkbox" name="0101" value="1" /><a href="https://my.bible.com/bible/111/GEN.2.niv" target="_blank">Genesis 2</a></li>
+      <li><input type="checkbox" name="0101" value="2" /><a href="https://my.bible.com/bible/111/LUK.1.niv" target="_blank">Luke 1</a></li>
+  </div>
+
+  <a id="0102"></a><div class="card" id="card0102">
+    <h1>January 2</h1>
+    <ul>
+      <li><input type="checkbox" name="0101" value="0" /><a href="https://my.bible.com/bible/111/GEN.1.niv">Genesis 1</a></li>
+      <li><input type="checkbox" name="0101" value="1" /><a href="https://my.bible.com/bible/111/GEN.2.niv">Genesis 2</a></li>
+      <li><input type="checkbox" name="0101" value="2" /><a href="https://my.bible.com/bible/111/LUK.1.niv">Luke 1</a></li>
+  </div>
+
+  <a id="0103"></a><div class="card" id="card0103">
+    <h1>January 3</h1>
+    <ul>
+      <li><input type="checkbox" name="0101" value="0" /><a href="https://my.bible.com/bible/111/GEN.1.niv">Genesis 1</a></li>
+      <li><input type="checkbox" name="0101" value="1" /><a href="https://my.bible.com/bible/111/GEN.2.niv">Genesis 2</a></li>
+      <li><input type="checkbox" name="0101" value="2" /><a href="https://my.bible.com/bible/111/LUK.1.niv">Luke 1</a></li>
+  </div>
+
+  <a id="0104"></a><div class="card" id="card0104">
+    <h1>January 4</h1>
+    <ul>
+      <li><input type="checkbox" name="0101" value="0" /><a href="https://my.bible.com/bible/111/GEN.1.niv">Genesis 1</a></li>
+      <li><input type="checkbox" name="0101" value="1" /><a href="https://my.bible.com/bible/111/GEN.2.niv">Genesis 2</a></li>
+      <li><input type="checkbox" name="0101" value="2" /><a href="https://my.bible.com/bible/111/LUK.1.niv">Luke 1</a></li>
+  </div>
+
+  <a id="0105"></a><div class="card" id="card0105">
+    <h1>January 5</h1>
+    <ul>
+      <li><input type="checkbox" name="0101" value="0" /><a href="https://my.bible.com/bible/111/GEN.1.niv">Genesis 1</a></li>
+      <li><input type="checkbox" name="0101" value="1" /><a href="https://my.bible.com/bible/111/GEN.2.niv">Genesis 2</a></li>
+      <li><input type="checkbox" name="0101" value="2" /><a href="https://my.bible.com/bible/111/LUK.1.niv">Luke 1</a></li>
+  </div>
+
+  <script>
+
+    let todaysDate = new Date();
+
+    /* Create array with all the days of the year */
+    let firstDayOfYear = new Date(2019, 0, 1);
+    let lastDayOfYear = new Date(2019, 11, 31);
+    let daysOfYear = [];
+    for (let day = firstDayOfYear;day <= lastDayOfYear; day.setDate(day.getDate() + 1)) {
+      console.log(new Date(day));
+      daysOfYear.push(new Date(day));
+    }
+
+  </script>
+
+</body>
+</html>
