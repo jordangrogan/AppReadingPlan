@@ -129,8 +129,13 @@
 
         let readingCheckbox = document.createElement("input");
         readingCheckbox.setAttribute("type", "checkbox");
-        readingCheckbox.setAttribute("name", "card" + day.getMonth() + day.getDate());
-        readingCheckbox.setAttribute("value", "0"); // change to i in loop
+        readingCheckbox.setAttribute("value", "reading" + readingDay + reading);
+        readingCheckbox.setAttribute("onchange", "completedReading(this);");
+        console.log(localStorage["reading" + readingDay + reading]);
+        if(localStorage["reading" + readingDay + reading] === "true") {
+          console.log("true!");
+          readingCheckbox.checked = true;
+        }
         cardLi.appendChild(readingCheckbox);
 
         let readingA = document.createElement("a");
@@ -149,6 +154,16 @@
       document.getElementById('card' + todaysDate.getMonth() + todaysDate.getDate()).scrollIntoView();
       window.scrollBy(0, -20);
     }, 0); // Had to put this in a setTimeout to wait until the page loads
+
+    function completedReading(checkbox) {
+      if(checkbox.checked == true){
+        localStorage[checkbox.value] = true;
+        console.log("CHECKED!" + checkbox.value);
+      } else {
+        localStorage[checkbox.value] = false;
+        console.log("UNCHECKED!" + checkbox.value);
+      }
+    }
 
   </script>
 
