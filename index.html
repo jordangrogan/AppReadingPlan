@@ -91,6 +91,11 @@
 
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+    const readingPlan = {
+      "01" : [{"full":"Genesis 1","link":"GEN.1"}, {"full":"Genesis 2","link":"GEN.2"}, {"full":"Luke 1","link":"LUK.1"}],
+      "02" : [{"full":"Genesis 3","link":"GEN.3"}, {"full":"Genesis 5","link":"GEN.5"}, {"full":"Luke 2","link":"LUK.2"}]
+    };
+
     let cardsDiv = document.getElementById("cards");
 
     /* Create array with all the days of the year */
@@ -112,6 +117,13 @@
 
       // Loop for each reading for that day:
 
+      let readingDay = "" + day.getMonth() + day.getDate();
+
+      for(let reading in readingPlan[readingDay]) {
+
+        let full = readingPlan[readingDay][reading]["full"]; // full name like "Genesis  1"
+        let link = readingPlan[readingDay][reading]["link"]; // link name like "GEN.1"
+
         let cardLi = document.createElement("li");
         cardUl.appendChild(cardLi);
 
@@ -122,12 +134,14 @@
         cardLi.appendChild(readingCheckbox);
 
         let readingA = document.createElement("a");
-        readingA.setAttribute("href", "https://my.bible.com/bible/111/GEN.1.niv");
-        readingA.innerHTML = "Genesis 1";
+        readingA.setAttribute("href", "https://bible.com/bible/111/" + link + ".niv");
+        readingA.setAttribute("target", "_blank");
+        readingA.innerHTML = full;
         cardLi.appendChild(readingA);
 
-    }
+      }
 
+    }
 
     // Scroll to todays date on load
     let todaysDate = new Date();
@@ -135,7 +149,6 @@
       document.getElementById('card' + todaysDate.getMonth() + todaysDate.getDate()).scrollIntoView();
       window.scrollBy(0, -20);
     }, 0); // Had to put this in a setTimeout to wait until the page loads
-
 
   </script>
 
