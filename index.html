@@ -10,7 +10,6 @@
       font-family: "Avenir Next"; /* NEED TO REPLACE WITH WEB FONT */
     }
     .card {
-      position: relative;
       margin: 20px 10px 20px 10px;
       overflow: hidden;
       background: white;
@@ -48,7 +47,7 @@
 
   <div id="cards"></div>
 
-  <a id="0101"></a><div class="card" id="card0101">
+  <!--<a id="0101"></a><div class="card" id="card0101">
     <h1>January 1</h1>
     <ul>
       <li><input type="checkbox" name="0101" value="0" /><a href="https://my.bible.com/bible/111/GEN.1.niv" target="_blank">Genesis 1</a></li>
@@ -86,20 +85,57 @@
       <li><input type="checkbox" name="0101" value="0" /><a href="https://my.bible.com/bible/111/GEN.1.niv">Genesis 1</a></li>
       <li><input type="checkbox" name="0101" value="1" /><a href="https://my.bible.com/bible/111/GEN.2.niv">Genesis 2</a></li>
       <li><input type="checkbox" name="0101" value="2" /><a href="https://my.bible.com/bible/111/LUK.1.niv">Luke 1</a></li>
-  </div>
+  </div>-->
 
   <script>
 
-    let todaysDate = new Date();
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    let cardsDiv = document.getElementById("cards");
 
     /* Create array with all the days of the year */
     let firstDayOfYear = new Date(2019, 0, 1);
     let lastDayOfYear = new Date(2019, 11, 31);
-    let daysOfYear = [];
     for (let day = firstDayOfYear;day <= lastDayOfYear; day.setDate(day.getDate() + 1)) {
-      console.log(new Date(day));
-      daysOfYear.push(new Date(day));
+
+      let cardDiv = document.createElement("div");
+      cardDiv.className = "card";
+      cardDiv.setAttribute("id", "card" + day.getMonth() + day.getDate());
+      cardsDiv.appendChild(cardDiv);
+
+      let cardH1 = document.createElement("h1");
+      cardH1.innerHTML = monthNames[day.getMonth()] + " " + day.getDate();
+      cardDiv.appendChild(cardH1);
+
+      let cardUl = document.createElement("ul");
+      cardDiv.appendChild(cardUl);
+
+      // Loop for each reading for that day:
+
+        let cardLi = document.createElement("li");
+        cardUl.appendChild(cardLi);
+
+        let readingCheckbox = document.createElement("input");
+        readingCheckbox.setAttribute("type", "checkbox");
+        readingCheckbox.setAttribute("name", "card" + day.getMonth() + day.getDate());
+        readingCheckbox.setAttribute("value", "0"); // change to i in loop
+        cardLi.appendChild(readingCheckbox);
+
+        let readingA = document.createElement("a");
+        readingA.setAttribute("href", "https://my.bible.com/bible/111/GEN.1.niv");
+        readingA.innerHTML = "Genesis 1";
+        cardLi.appendChild(readingA);
+
     }
+
+
+    // Scroll to todays date on load
+    let todaysDate = new Date();
+    setTimeout(function(){
+      document.getElementById('card' + todaysDate.getMonth() + todaysDate.getDate()).scrollIntoView();
+      window.scrollBy(0, -20);
+    }, 0); // Had to put this in a setTimeout to wait until the page loads
+
 
   </script>
 
