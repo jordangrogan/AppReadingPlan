@@ -13,6 +13,16 @@
       background: #e5e4e4;
       font-family: AvenirLT-Light, "Avenir Next", sans-serif;
     }
+    a {
+      color: #007da9;
+      text-decoration: none;
+    }
+    .toplink {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-top: 20px;
+    }
     .card {
       margin: 20px 10px 20px 10px;
       overflow: hidden;
@@ -35,10 +45,6 @@
       margin-bottom: 5px;
       font-size: 20px
     }
-    .card li a {
-      color: #007da9;
-      text-decoration: none;
-    }
     .card input[type=checkbox] {
       margin: 0 10px 0 0;
       vertical-align: middle;
@@ -50,6 +56,7 @@
 </head>
 <body>
 
+  <a onclick="jumpToToday();" class="toplink">Jump to Today</a>
   <div id="cards"></div>
 
   <script>
@@ -59,14 +66,16 @@
     const readingPlan = {
       "0001" : [{"full":"Genesis 1","link":"GEN.1"}, {"full":"Genesis 2","link":"GEN.2"}, {"full":"Luke 1","link":"LUK.1"}],
       "0002" : [{"full":"Genesis 3","link":"GEN.3"}, {"full":"Genesis 5","link":"GEN.5"}, {"full":"Luke 2","link":"LUK.2"}],
-      "0228" : [{"full":"Judges 4","link":"JDG.4"}, {"full":"Judges 5","link":"JDG.5"}, {"full":"Psalm 39","link":"PSA.39"}, {"full":"Psalm 41","link":"PSA.41"}, {"full":"1 Corinthians 13","link":"1CO.13"}]
+      "0228" : [{"full":"Judges 4","link":"JDG.4"}, {"full":"Judges 5","link":"JDG.5"}, {"full":"Psalm 39","link":"PSA.39"}, {"full":"Psalm 41","link":"PSA.41"}, {"full":"1 Corinthians 13","link":"1CO.13"}],
+      "0506" : [{"full":"Ecclesiastes 1","link":"ECC.1"}, {"full":"Ecclesiastes 2","link":"ECC.2"}, {"full":"Ecclesiastes 3","link":"ECC.3"}, {"full":"Psalm 45","link":"PSA.45"}, {"full":"Ephesians 2","link":"EPH.2"}]
     };
 
     let cardsDiv = document.getElementById("cards");
 
-    /* Create array with all the days of the year */
     let firstDayOfYear = new Date(2019, 0, 1);
     let lastDayOfYear = new Date(2019, 11, 31);
+
+    /* Loop through the days of the year, create a card for each */
     for (let day = firstDayOfYear;day <= lastDayOfYear; day.setDate(day.getDate() + 1)) {
 
       let cardDiv = document.createElement("div");
@@ -112,12 +121,7 @@
 
     }
 
-    // Scroll to todays date on load
-    let todaysDate = new Date();
-    setTimeout(function(){
-      document.getElementById('card' + getDateId(todaysDate)).scrollIntoView();
-      window.scrollBy(0, -20);
-    }, 100); // Had to put this in a setTimeout to wait until the page loads
+    jumpToToday();
 
     // When a checkbox is checked/unchecked
     function completedReading(checkbox) {
@@ -139,6 +143,15 @@
         day = "0" + day;
       }
       return month + day + "";
+    }
+
+    function jumpToToday() {
+      // Scroll to todays date on load
+      let todaysDate = new Date();
+      setTimeout(function(){
+        document.getElementById('card' + getDateId(todaysDate)).scrollIntoView();
+        window.scrollBy(0, -20);
+      }, 100); // Had to put this in a setTimeout to wait until the page loads
     }
 
   </script>
