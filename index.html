@@ -2,6 +2,8 @@
 
 <head>
 
+  <title>Daily Reading Plan</title>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <script type="text/javascript" src="MyFontsWebfontsKit.js"></script>
@@ -55,8 +57,9 @@
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     const readingPlan = {
-      "01" : [{"full":"Genesis 1","link":"GEN.1"}, {"full":"Genesis 2","link":"GEN.2"}, {"full":"Luke 1","link":"LUK.1"}],
-      "02" : [{"full":"Genesis 3","link":"GEN.3"}, {"full":"Genesis 5","link":"GEN.5"}, {"full":"Luke 2","link":"LUK.2"}]
+      "0001" : [{"full":"Genesis 1","link":"GEN.1"}, {"full":"Genesis 2","link":"GEN.2"}, {"full":"Luke 1","link":"LUK.1"}],
+      "0002" : [{"full":"Genesis 3","link":"GEN.3"}, {"full":"Genesis 5","link":"GEN.5"}, {"full":"Luke 2","link":"LUK.2"}],
+      "0228" : [{"full":"Judges 4","link":"JDG.4"}, {"full":"Judges 5","link":"JDG.5"}, {"full":"Psalm 39","link":"PSA.39"}, {"full":"Psalm 41","link":"PSA.41"}, {"full":"1 Corinthians 13","link":"1CO.13"}]
     };
 
     let cardsDiv = document.getElementById("cards");
@@ -68,7 +71,7 @@
 
       let cardDiv = document.createElement("div");
       cardDiv.className = "card";
-      cardDiv.setAttribute("id", "card" + day.getMonth() + day.getDate());
+      cardDiv.setAttribute("id", "card" + getDateId(day));
       cardsDiv.appendChild(cardDiv);
 
       let cardH1 = document.createElement("h1");
@@ -80,7 +83,7 @@
 
       // Loop for each reading for that day:
 
-      let readingDay = "" + day.getMonth() + day.getDate();
+      let readingDay = getDateId(day);
 
       for(let reading in readingPlan[readingDay]) {
 
@@ -101,7 +104,7 @@
 
         let readingA = document.createElement("a");
         readingA.setAttribute("href", "https://bible.com/bible/111/" + link + ".niv");
-        readingA.setAttribute("target", "_blank");
+        readingA.setAttribute("target", "_top");
         readingA.innerHTML = full;
         cardLi.appendChild(readingA);
 
@@ -112,9 +115,9 @@
     // Scroll to todays date on load
     let todaysDate = new Date();
     setTimeout(function(){
-      document.getElementById('card' + todaysDate.getMonth() + todaysDate.getDate()).scrollIntoView();
+      document.getElementById('card' + getDateId(todaysDate)).scrollIntoView();
       window.scrollBy(0, -20);
-    }, 0); // Had to put this in a setTimeout to wait until the page loads
+    }, 100); // Had to put this in a setTimeout to wait until the page loads
 
     // When a checkbox is checked/unchecked
     function completedReading(checkbox) {
@@ -123,6 +126,19 @@
       } else {
         localStorage[checkbox.value] = false;
       }
+    }
+
+    // pads date with a 0 for single digits
+    function getDateId(date) {
+      let month = date.getMonth();
+      if(month < 10) {
+        month = "0" + month;
+      }
+      let day = date.getDate();
+      if(day < 10) {
+        day = "0" + day;
+      }
+      return month + day + "";
     }
 
   </script>
