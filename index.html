@@ -451,7 +451,7 @@
       let cardUl = document.createElement("ul");
       cardDiv.appendChild(cardUl);
 
-      // Loop for each reading for that day:
+      /* Loop for each reading for that day: */
 
       let readingDay = getDateId(day);
 
@@ -484,7 +484,7 @@
 
     jumpToToday();
 
-    // When a checkbox is checked/unchecked
+    /* When a checkbox is checked/unchecked */
     function completedReading(checkbox) {
       if(checkbox.checked == true){
         localStorage[checkbox.value] = true;
@@ -493,7 +493,8 @@
       }
     }
 
-    // pads date with a 0 for single digits
+    /* Converts date to a date id (MMDD)
+        Pads date with a 0 for single digits */
     function getDateId(date) {
       let month = date.getMonth();
       if(month < 10) {
@@ -506,8 +507,8 @@
       return month + day + "";
     }
 
+    /* Scroll to today's date card */
     function jumpToToday() {
-      // Scroll to todays date on load
       let todaysDate = new Date();
       setTimeout(function(){
         document.getElementById('card' + getDateId(todaysDate)).scrollIntoView();
