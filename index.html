@@ -123,6 +123,7 @@
       "0126" : [{"full":"Numbers 19","link":"NUM.19"}, {"full":"Numbers 20","link":"NUM.20"}, {"full":"Psalm 28","link":"PSA.28"}, {"full":"Mark 5","link":"MRK.5"}],
       "0127" : [{"full":"Numbers 21","link":"NUM.21"}, {"full":"Numbers 23","link":"NUM.23"}, {"full":"Mark 6 ","link":"MRK.6"}, {"full":"Mark 7","link":"MRK.7"}],
       "0128" : [{"full":"Numbers 24","link":"NUM.24"}, {"full":"Numbers 27","link":"NUM.27"}, {"full":"1 Corinthians 13","link":"1CO.13"}],
+      "0129" : [{"full":"Psalm 100","link":"PSA.100"}, {"full":"Romans 8","link":"ROM.8"}],
       "0201" : [{"full":"Numbers 28","link":"NUM.28"}, {"full":"Numbers 29","link":"NUM.29"}, {"full":"Mark 8","link":"MRK.8"}],
       "0202" : [{"full":"Numbers 30","link":"NUM.30"}, {"full":"Numbers 31","link":"NUM.31"}, {"full":"Mark 9","link":"MRK.9"}],
       "0203" : [{"full":"Numbers 32","link":"NUM.32"}, {"full":"Numbers 33","link":"NUM.33"}, {"full":"Mark 10","link":"MRK.10"}],
@@ -433,8 +434,8 @@
 
     let cardsDiv = document.getElementById("cards");
 
-    let firstDayOfYear = new Date(2019, 0, 1);
-    let lastDayOfYear = new Date(2019, 11, 31);
+    let firstDayOfYear = new Date(new Date().getFullYear(), 0, 1);
+    let lastDayOfYear = new Date(new Date().getFullYear(), 11, 31);
 
     /* Loop through the days of the year, create a card for each */
     for (let day = firstDayOfYear;day <= lastDayOfYear; day.setDate(day.getDate() + 1)) {
@@ -504,7 +505,7 @@
       if(day < 10) {
         day = "0" + day;
       }
-      return month + day + "";
+      return month + "" + day + "";
     }
 
     /* Scroll to today's date card */
